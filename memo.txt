@@ -1,0 +1,16 @@
+[Security]  reference - https://ryudung.tistory.com/20
+    * csrf 토큰
+    * password encoding [완료]
+    * 세션만료 시 로그인페이지, 로그인 후 이전페이지
+    * 권한그룹, 권한 관리
+    * 서버 다중화 세션관리
+    * OAuth
+
+
+[UI]
+    * 메뉴관리
+    * GNB, LNB, TAB 화면 디자인
+    * Webpack, Vue.js, npm, bootstrap 구성
+
+[AA]
+    * 개발, 운영별 property 관리
