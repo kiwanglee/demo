@@ -1,16 +1,24 @@
 package com.example.demo.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="user_role")
 public class UserRole implements GrantedAuthority {
 
-    @Id
+	private static final long serialVersionUID = 1L;
+
+	@Id
     private String role;
 
     @JsonIgnore

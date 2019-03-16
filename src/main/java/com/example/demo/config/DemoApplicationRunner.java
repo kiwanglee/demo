@@ -1,13 +1,14 @@
 package com.example.demo.config;
 
-import com.example.demo.domain.User;
-import com.example.demo.domain.UserRole;
-import com.example.demo.service.UserRoleService;
-import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import com.example.demo.domain.User;
+import com.example.demo.domain.UserRole;
+import com.example.demo.service.UserRoleService;
+import com.example.demo.service.UserService;
 
 
 @Component

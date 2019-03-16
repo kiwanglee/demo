@@ -1,19 +1,23 @@
 package com.example.demo.config.security;
 
-import com.example.demo.domain.User;
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+import com.example.demo.domain.User;
 
 public class DemoUserDetails extends User implements UserDetails {
 
-    public DemoUserDetails(User user) {
+	private static final long serialVersionUID = 1L;
+
+	public DemoUserDetails(User user) {
 
         super.setEmail(user.getEmail());
         super.setPassword(user.getPassword());
         super.setRoles(user.getRoles());
     }
+	
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
