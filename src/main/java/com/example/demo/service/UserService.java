@@ -1,9 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.User;
-import com.example.demo.domain.UserRole;
+import com.example.demo.domain.Role;
 import com.example.demo.store.UserRepository;
-import com.example.demo.store.UserRoleRepository;
+import com.example.demo.store.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,7 +19,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private UserRoleRepository userRoleRepository;
+    private RoleRepository userRoleRepository;
 
     public User register(User User) {
         return userRepository.save(User);
@@ -37,7 +37,7 @@ public class UserService {
     public User addUserRole(String email, String role) {
 
         User user = userRepository.findById(email).get();
-        UserRole userRole = userRoleRepository.findById(role).get();
+        Role userRole = userRoleRepository.findById(role).get();
         user.addUserRole(userRole);
         return user;
     }

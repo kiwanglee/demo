@@ -5,9 +5,11 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.domain.Role;
+import com.example.demo.domain.SubMenu;
 import com.example.demo.domain.User;
-import com.example.demo.domain.UserRole;
-import com.example.demo.service.UserRoleService;
+import com.example.demo.service.RoleService;
+import com.example.demo.service.SubMenuService;
 import com.example.demo.service.UserService;
 
 
@@ -17,13 +19,15 @@ public class DemoApplicationRunner implements ApplicationRunner {
     @Autowired
     private UserService userService;
     @Autowired
-    private UserRoleService userRoleService;
+    private RoleService roleService;
+    @Autowired
+    private SubMenuService subMenuService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
         //initData();
-        //userService.addUserRole("kiwang.lee@kurlycorp.com", "USER");
+        //userService.addUserRole("bartwars@naver.com", "USER");
     }
 
     private void initData() {
@@ -49,11 +53,18 @@ public class DemoApplicationRunner implements ApplicationRunner {
         user.setPassword("$2a$10$m5WHglgDdSROkKtwn6Vd6evnaJhYOifLs7YQ0ZyquejFttUmxJhPK");
         userService.register(user);
 
-        UserRole role = null;
-        role = new UserRole();
-        role.setRole("USER");
-        userRoleService.register(role);
-        role.setRole("ADMIN");
-        userRoleService.register(role);
+        Role role = null;
+        role = new Role();
+        role.setName("USER");
+        roleService.register(role);
+        role.setName("ADMIN");
+        roleService.register(role);
+        
+        SubMenu subMenu = null;
+        subMenu = new SubMenu();
+        subMenu.setName("권역관리");
+        subMenu.setUrl("/user");
+        subMenu = subMenuService.register(subMenu);
+        subMenuService.addRole(subMenu.getId(), "USER");
     }
 }
