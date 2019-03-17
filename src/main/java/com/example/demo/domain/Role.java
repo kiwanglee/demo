@@ -1,6 +1,5 @@
 package com.example.demo.domain;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -28,7 +27,7 @@ public class Role implements GrantedAuthority {
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-    private Set<SubMenu> subMenus;
+    private Set<Menu> menus;
     
     @Override
     public String getAuthority() {
@@ -47,12 +46,12 @@ public class Role implements GrantedAuthority {
 		return users;
 	}
 
-	public Set<SubMenu> getSubMenus() {
-		return subMenus;
+	public Set<Menu> getMenus() {
+		return menus;
 	}
 
-	public void setSubMenus(Set<SubMenu> subMenus) {
-		this.subMenus = subMenus;
+	public void setMenus(Set<Menu>menus) {
+		this.menus = menus;
 	}
 
 	public void setUsers(Set<User> users) {

@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.SubMenu;
-import com.example.demo.service.SubMenuService;
+import com.example.demo.domain.Menu;
+import com.example.demo.service.MenuService;
 
 @RestController
-@RequestMapping("submenus")
-public class SubMenuResource {
+@RequestMapping("menus")
+public class MenuResource {
 
 	@Autowired
-	private SubMenuService subMenuService;
+	private MenuService menuService;
 	
 	@GetMapping
-	public List<SubMenu> findAll() {
+	public List<Menu> findAll() {
 		
-		return subMenuService.findAll();
+		return menuService.findAll();
 	}
 }
