@@ -16,8 +16,8 @@ public class RoleService {
     @Autowired
     private RoleRepository userRoleRepository;
 
-    public Role register(Role userRole) {
-        return userRoleRepository.save(userRole);
+    public Role register(Role role) {
+        return userRoleRepository.save(role);
     }
 
     public List<Role> findAll() {

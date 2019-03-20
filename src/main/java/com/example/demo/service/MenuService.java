@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,10 @@ public class MenuService {
 	public Menu register(Menu menu) {
 		return menuRoleRepository.save(menu);
 	}
+
+	public List<Menu> registerAll(List<Menu> menus) {
+		return (List<Menu>) menuRoleRepository.saveAll(menus);
+	}
 	
 	public Menu find(String id) {
 		return menuRoleRepository.findById(id).get();
@@ -33,7 +39,23 @@ public class MenuService {
 	public List<Menu> findAll() {
 		return menuRoleRepository.findByParentMenuIdIsNull();
 	}
-	
+
+	public List<Menu> findByRole(String roleName) {
+
+		Role role = roleRepository.findById(roleName).get();
+
+		List<Menu> menus = (List<Menu>) menuRoleRepository.findAll();
+		List<Menu> filteredMenus = new ArrayList<>();
+		for (Menu menu : menus) {
+			if(menu.existsRole(role.getName())) {
+				menu.filterSubMenuByRole(role.getName());
+				filteredMenus.add(menu);
+			}
+		}
+
+		return filteredMenus;
+	}
+
 	public Menu addRole(String id, String roleName) {
 		
 		Menu menu = menuRoleRepository.findById(id).get();

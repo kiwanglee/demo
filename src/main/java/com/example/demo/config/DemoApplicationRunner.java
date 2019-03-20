@@ -12,6 +12,9 @@ import com.example.demo.service.MenuService;
 import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
 
+import java.util.HashSet;
+import java.util.List;
+
 
 @Component
 public class DemoApplicationRunner implements ApplicationRunner {
@@ -26,9 +29,9 @@ public class DemoApplicationRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        initData();
-    	initMenuData();
-        userService.addUserRole("bartwars@naver.com", "USER");
+        //initData();
+    	//initMenuData();
+        //userService.addUserRole("bartwars@naver.com", "USER");
     }
 
     private void initData() {
@@ -190,5 +193,11 @@ public class DemoApplicationRunner implements ApplicationRunner {
 	        	subMenu.addSubMenu(subMenu2);
         	menu.addSubMenu(subMenu);
         menuService.register(menu);
+
+
+		List<Menu> menus = menuService.findAll();
+		menu = menus.get(0);
+		menu.addRole(roleService.find("ADMIN"));
+		menuService.register(menu);
     }
 }

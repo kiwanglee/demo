@@ -35,7 +35,7 @@ public class Menu {
 	
 	private int depth;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "menu_role",
             joinColumns = @JoinColumn(name="id"),
@@ -62,10 +62,33 @@ public class Menu {
 	}
 	
 	public void addSubMenu(Menu menu) {
+
 		menu.setDepth(this.depth+1);
 		this.subMenus.add(menu);
 	}
-	
+
+	public boolean existsRole(String roleName) {
+
+		for(Role role : this.roles) {
+			if(role.getName().equals(roleName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void filterSubMenuByRole(String roleName) {
+
+		Set<Menu> filterdSubMenus = new HashSet<>();
+		for(Menu subMenu : this.subMenus) {
+			if(subMenu.existsRole(roleName)) {
+				subMenu.filterSubMenuByRole(roleName);
+				filterdSubMenus.add(subMenu);
+			}
+		}
+		this.subMenus = filterdSubMenus;
+	}
+
 	public String getId() {
 		return id;
 	}
