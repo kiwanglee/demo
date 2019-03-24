@@ -26,3 +26,8 @@ logging:
         type: trace
       springframework:
         security: DEBUG
+
+custom:
+  oauth2:
+    kako:
+      client-id: 14e16010bd910c8a817970582ae9bbea
