@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-// 14e16010bd910c8a817970582ae9bbea kakao apikey
     @Autowired
     private LoginService loginService;
 
