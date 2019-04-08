@@ -5,10 +5,39 @@
     <title>Login</title>
 </head>
 <body>
-<form th:action="@{/login}" method="post">
-    <input type="text" name="user" />
-    <input type="password" name="password" />
-    <input type="submit" value="완료">
+<form th:action="@{/signin}" method="post">
+    <input id="input_username" type="text"/>
+    <input id="input_password" type="password"/>
+    <input id="input_submit" type="button" value="완료">
 </form>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        events();
+    });
+
+    function events() {
+        $('#input_submit').click(function() {
+            login();
+        });
+    }
+
+    function login() {
+        var param = {};
+        param.email = $('#input_username').val();
+        param.password = $('#input_password').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/signin",
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json; charset=UTF-8",
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    }
+</script>
 </html>

@@ -16,7 +16,7 @@ spring:
 
   thymeleaf:
     prefix: file:src/main/resources/templates/
-    cache: true
+    cache: false
 
 logging:
   level:
