@@ -26,3 +26,7 @@ logging:
         type: trace
       springframework:
         security: DEBUG
+
+app:
+  jwtSecret: JWTSuperSecretKey
+  jwtExpirationInMs: 604800000
